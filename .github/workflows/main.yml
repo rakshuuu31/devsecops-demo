@@ -1,9 +1,7 @@
-name: CI Pipeline
+name: DevSecOps Demo
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -11,8 +9,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run Hello World Script
-        run: echo "🎉 Hello from DevSecOps Demo Pipeline!"
+      # Step 2: Setup Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # Step 3: Run Python script
+      - name: Run hello.py
+        run: python hello.py
